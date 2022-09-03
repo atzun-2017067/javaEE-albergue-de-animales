@@ -1,0 +1,156 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+header{
+    background: linear-gradient( #F86E00, #E8A841);
+    background-color: #23376d;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+
+main{
+    background-color: #F5EFE8;
+}
+
+footer{
+    background-color: #23376d;
+    color: white;
+    text-align: center;
+    padding: 1px;
+    position:fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+#footercarreras{
+    background-color: #23376d;
+    color: white;
+    text-align: center;
+    padding: 1px;
+    position:fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+#imagen1{
+    text-align: center;
+}
+
+#contactos{
+    background-color: #23376d;
+    color: white;
+    text-align:justify;
+}
+
+#menu{
+    background-color: #EEEEEE;
+
+}
+#menu ul li{
+    display:block;
+    float: left;
+    border: 2px solid #23376d;
+}
+#menu ul li a{
+    color:#444;
+    padding: 15px;
+    display: block;
+}
+#menu ul li a:hover{
+    background-color:  #23376d;
+    color:white;
+}
+.clearfix{
+    float:none;
+    clear:both;
+}
+#contenido{
+    padding: 20px;
+    border: 4px solid #23376d;
+}
+
+.descripcion    {
+    font-size: 25px;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+    margin:15px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.about{
+    width: 100%;
+    padding: 100px 0px;
+    background-color: #191919;
+}
+.about img{
+    height: auto;
+    width: 430px;
+}
+.about-text{
+    width: 550px;
+}
+
+.about-text h2{
+    color: white;
+    font-size: 75px;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+}
+.about-text h5{
+    color: white;
+    letter-spacing: 2px;
+    font-size: 22px;
+    margin-bottom: 25px;
+    text-transform: capitalize;
+}
+
+.main{
+    width: 1130px;
+    max-width: 95%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.informacion {
+    color: white;
+    font-size: 17px;
+    font-style: italic;
+    text-align: center;
+    margin:15px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+footer p:nth-child(2){
+    color: white;
+    font-size: 17px;
+    width: 500px;
+    text-align: center;
+    line-height: 26px;
+}
+
+
+.img-carreras{
+    width: 300px;
+
+}
+
+#contenido-ct{
+    display: flex;
+    justify-content: center;
+
+}
+
+.parrafo-ct{
+    color: #444;
+    font-family:  'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+a{
+    text-decoration: none;
+}
+
