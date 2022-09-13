@@ -16,6 +16,7 @@ import java.util.List;
  */
 public class UsuarioDaoImpl implements IUsuarioDAO {
     private static final String SQL_SELECT = "SELECT usuario, pass, rol_id, empleado_id FROM usuarios";
+    private static final String SQL_DELETE = "DELETE FROM usuarios WHERE usuario = ?";
     
     private Connection con = null;
     private PreparedStatement pstmt = null;
@@ -50,17 +51,33 @@ public class UsuarioDaoImpl implements IUsuarioDAO {
     }
 
     @Override
-    public boolean add(Usuario usuario) {
+    public int add(Usuario usuario) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean update(Usuario usuario) {
+    public int update(Usuario usuario) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean delete(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int delete(Usuario usuario) {
+        int rows = 0;
+
+        try {
+            con = Conexion.getConnection();
+            pstmt = con.prepareStatement(SQL_DELETE);
+            pstmt.setString(1, usuario.getUsuario());
+            System.out.println(pstmt.toString());
+            /*cantidad de líneas afectadas*/
+            rows = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Se produjo un error al intentar eliminar el registro con el id:" + usuario.getUsuario());
+            e.printStackTrace(System.out);
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+
+        return rows;
     }
 }

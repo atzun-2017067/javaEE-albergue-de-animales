@@ -34,7 +34,7 @@
                     <a class="nav-link" href="${pageContext.request.contextPath}/ServletMascota?accion=listar">Mascota</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/ServletAsignacionVacunaMascota?accion=listar">Asignaciones Vacunas</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/ServletAsignacion?accion=listar">Asignaciones Vacunas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="${pageContext.request.contextPath}/ServletAdopcion?accion=listar">Adopciones</a>

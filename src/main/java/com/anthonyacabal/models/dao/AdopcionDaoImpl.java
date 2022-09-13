@@ -19,6 +19,7 @@ import java.util.List;
 
 public class AdopcionDaoImpl implements IAdopcionDAO{
     private static final String SQL_SELECT = "SELECT id_adopcion, empleado_id, cliente_id, mascota_id, fecha_adopcion FROM adopciones";
+    private static final String SQL_DELETE = "DELETE FROM adopciones WHERE id_adopcion = ?";
     
     private Connection con = null;
     private PreparedStatement pstmt = null;
@@ -53,17 +54,33 @@ public class AdopcionDaoImpl implements IAdopcionDAO{
     }
 
     @Override
-    public boolean add(Adopcion adopcion) {
+    public int add(Adopcion adopcion) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean update(Adopcion adopcion) {
+    public int update(Adopcion adopcion) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean delete(Adopcion adopcion) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int delete(Adopcion adopcion) {
+        int rows = 0;
+
+        try {
+            con = Conexion.getConnection();
+            pstmt = con.prepareStatement(SQL_DELETE);
+            pstmt.setInt(1, adopcion.getId());
+            System.out.println(pstmt.toString());
+            /*cantidad de líneas afectadas*/
+            rows = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Se produjo un error al intentar eliminar el registro con el id:" + adopcion.getId());
+            e.printStackTrace(System.out);
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+
+        return rows;
     }
 }

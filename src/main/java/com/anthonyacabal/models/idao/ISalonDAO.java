@@ -16,11 +16,11 @@ public interface ISalonDAO {
     public List<Salon> getAll();
     
     // Insertar un registro
-    public boolean add(Salon lugar);
+    public int add(Salon salon);
     
     // Actualizar un registro
-    public boolean update(Salon lugar);
+    public int update(Salon salon);
     
     // Eliminar un registro
-    public boolean delete(Salon lugar);
+    public int delete(Salon salon);
 }

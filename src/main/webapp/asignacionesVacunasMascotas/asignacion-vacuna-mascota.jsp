@@ -90,7 +90,9 @@
                                                 <i class="fa fa-edit"></i> Editar
                                             </td>
                                             <td>
-                                                <i class="far fa-trash-alt"></i> Eliminar
+                                                <a class="btn btn-secondary" href="${pageContext.request.contextPath}/ServletAsignacion?accion=eliminar&id=${asignacion.id}">
+                                                    <i class="fa fa-trash-alt"></i> Eliminar
+                                                </a>
                                             </td>
                                         </tr>
                                     </c:forEach>

@@ -39,6 +39,7 @@ public class ServletCliente extends HttpServlet {
                     
                 case "eliminar":
                     // Eliminar otras acciones
+                    eliminarCliente(request, response);
                     break;
             }
         }
@@ -49,5 +50,21 @@ public class ServletCliente extends HttpServlet {
         HttpSession sesion = request.getSession();
         sesion.setAttribute("data", listaClientes);
         response.sendRedirect("clientes/cliente.jsp");
+    }
+    
+    private void eliminarCliente(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        int idCliente = Integer.parseInt(request.getParameter("id"));
+        Cliente cliente = new Cliente(idCliente);
+        
+        int registrosEliminados = new ClienteDaoImpl().delete(cliente);
+        
+        if(registrosEliminados >= 1) {
+            System.out.println("El registro fue eliminado con exito");
+        } else {
+            System.err.println("Se produjo un error al intentar eliminar el siguiente registro: " + cliente.toString());
+        }
+        System.out.println("Cantidad de registros eliminados: " + registrosEliminados);
+        
+        listarClientes(request, response);
     }
 }

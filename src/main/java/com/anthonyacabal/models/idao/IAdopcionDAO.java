@@ -12,11 +12,11 @@ public interface IAdopcionDAO {
     public List<Adopcion> getAll();
     
     // Insertar un registro
-    public boolean add(Adopcion adopcion);
+    public int add(Adopcion adopcion);
     
     // Actualizar un registro
-    public boolean update(Adopcion adopcion);
+    public int update(Adopcion adopcion);
     
     // Eliminar un registro
-    public boolean delete(Adopcion adopcion);
+    public int delete(Adopcion adopcion);
 }

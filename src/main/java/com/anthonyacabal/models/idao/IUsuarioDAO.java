@@ -11,11 +11,11 @@ public interface IUsuarioDAO {
     public List<Usuario> getAll();
     
     // Insertar un registro
-    public boolean add(Usuario tipo);
+    public int add(Usuario tipo);
     
     // Actualizar un registro
-    public boolean update(Usuario tipo);
+    public int update(Usuario tipo);
     
     // Eliminar un registro
-    public boolean delete(Usuario tipo);
+    public int delete(Usuario tipo);
 }

@@ -39,6 +39,7 @@ public class ServletAdopcion extends HttpServlet {
                     
                 case "eliminar":
                     // Eliminar otras acciones
+                    eliminarAdopcion(request, response);
                     break;
             }
         }
@@ -49,5 +50,21 @@ public class ServletAdopcion extends HttpServlet {
         HttpSession sesion = request.getSession();
         sesion.setAttribute("data", listaAdopciones);
         response.sendRedirect("adopciones/adopcion.jsp");
+    }
+    
+    private void eliminarAdopcion(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        int idAdopcion = Integer.parseInt(request.getParameter("id"));
+        Adopcion adopcion = new Adopcion(idAdopcion);
+        
+        int registrosEliminados = new AdopcionDaoImpl().delete(adopcion);
+        
+        if(registrosEliminados >= 1) {
+            System.out.println("El registro fue eliminado con exito");
+        } else {
+            System.err.println("Se produjo un error al intentar eliminar el siguiente registro: " + adopcion.toString());
+        }
+        System.out.println("Cantidad de registros eliminados: " + registrosEliminados);
+        
+        listarAdopciones(request, response);
     }
 }

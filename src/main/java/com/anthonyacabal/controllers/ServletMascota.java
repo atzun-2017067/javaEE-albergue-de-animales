@@ -39,6 +39,7 @@ public class ServletMascota extends HttpServlet {
                     
                 case "eliminar":
                     // Eliminar otras acciones
+                    eliminarMascota(request, response);
                     break;
             }
         }
@@ -49,5 +50,21 @@ public class ServletMascota extends HttpServlet {
         HttpSession sesion = request.getSession();
         sesion.setAttribute("data", listaMascotas);
         response.sendRedirect("mascotas/mascota.jsp");
+    }
+    
+    private void eliminarMascota(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        int idMascota = Integer.parseInt(request.getParameter("id"));
+        Mascota mascota = new Mascota(idMascota);
+        
+        int registrosEliminados = new MascotaDaoImpl().delete(mascota);
+        
+        if(registrosEliminados >= 1) {
+            System.out.println("El registro fue eliminado con exito");
+        } else {
+            System.err.println("Se produjo un error al intentar eliminar el siguiente registro: " + mascota.toString());
+        }
+        System.out.println("Cantidad de registros eliminados: " + registrosEliminados);
+        
+        listarMascotas(request, response);
     }
 }

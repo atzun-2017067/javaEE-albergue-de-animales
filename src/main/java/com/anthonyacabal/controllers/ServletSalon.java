@@ -2,6 +2,7 @@ package com.anthonyacabal.controllers;
 
 
 import com.anthonyacabal.models.dao.SalonDaoImpl;
+import com.anthonyacabal.models.dao.SalonDaoJPA;
 import com.anthonyacabal.models.domain.Salon;
 import java.io.IOException;
 import java.util.List;
@@ -42,16 +43,36 @@ public class ServletSalon extends HttpServlet {
                     
                 case "eliminar":
                     // Eliminar otras acciones
+                    eliminarSalon(request, response);
                     break;
             }
         }
     }
     
     private void listarSalones(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        List<Salon> listaSalones = new SalonDaoImpl().getAll();
+        List<Salon> listaSalones = new SalonDaoJPA().getAll();
         HttpSession sesion = request.getSession();
         sesion.setAttribute("data", listaSalones);
         response.sendRedirect("salones/salon.jsp");
+    }
+    
+    private void eliminarSalon(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        int idSalon = Integer.parseInt(request.getParameter("id"));
+        Salon salon = new SalonDaoJPA().get(new Salon(idSalon));
+        
+        //Estudiante estudiante = new Estudiante(idEstudiante);
+        //int registrosEliminados = new EstudianteDaoImpl().delete(estudiante/*es el método que se creó a la línea anterior*/);
+        
+        int registrosEliminados = new SalonDaoJPA().delete(salon);
+        
+        if(registrosEliminados >= 1) {
+            System.out.println("El registro fue eliminado con exito");
+        } else {
+            System.err.println("Se produjo un error al intentar eliminar el siguiente registro");
+        }
+        System.out.println("Cantidad de registros eliminados: " + registrosEliminados);
+        
+        listarSalones(request, response);
     }
      
 }

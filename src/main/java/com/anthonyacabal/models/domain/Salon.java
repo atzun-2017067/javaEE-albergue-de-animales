@@ -1,15 +1,55 @@
 package com.anthonyacabal.models.domain;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
 /**
  *
- * @author LUIS
+ * @author Anthony Acabal
  */
-public class Salon {
+
+@Entity
+@Table(name = "salones")
+@NamedQueries(
+        {
+            @NamedQuery(name = "Salon.findAll", query = "from Salon" /*Consulta a un objeto de datos*/),
+            /*el from estudiante no es una sentencia sql, lo que hace referencia es al nombre de la clase, no al de la tabla*/
+            @NamedQuery(name = "Salon.find", query = "from Salon WHERE id = :id")
+        /*se deja espacio : y se le asigna un nombre a ese parametro*/
+        }
+        /*Lo que se acaba de hacer es un mapeo*/
+        /*ENTIDADES FUERTES CON JPA Y ENTIDADES DÉBILES CON JDBC*/
+)
+
+public class Salon implements Serializable {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @Column(name = "id_salon")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    
+    @Column
     private String descripcion;
+    
+    @Column(name= "capacidad_minima")
     private int capacidadMinima;
+    
+    @Column(name = "capacidad_maxima")
     private int capacidadMaxima;
+    
+    @Column
     private String edificio;
+    
+    @Column
     private int nivel;
     
     public Salon() {

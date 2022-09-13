@@ -85,7 +85,7 @@
                                         <tr>
                                             <td>${persona.id}</td>
                                             <td>${persona.nombre1} ${persona.nombre2} 
-                                                ${persona.nombre3} ${estudiante.apellido1}
+                                                ${persona.nombre3} ${persona.apellido1}
                                                 ${persona.apellido2}
                                             </td>
                                             <td>${persona.direccion}</td>
@@ -95,7 +95,9 @@
                                                 <i class="fa fa-edit"></i> Editar
                                             </td>
                                             <td>
-                                                <i class="far fa-trash-alt"></i> Eliminar
+                                                <a class="btn btn-secondary" href="${pageContext.request.contextPath}/ServletPersona?accion=eliminar&id=${persona.id}">
+                                                    <i class="fa fa-trash-alt"></i> Eliminar
+                                                </a>
                                             </td>
                                         </tr>
                                     </c:forEach>

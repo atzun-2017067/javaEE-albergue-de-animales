@@ -1,6 +1,7 @@
 package com.anthonyacabal.controllers;
 
 import com.anthonyacabal.models.dao.RolDaoImpl;
+import com.anthonyacabal.models.dao.RolDaoJPA;
 import com.anthonyacabal.models.domain.Rol;
 import java.io.IOException;
 import java.util.List;
@@ -39,6 +40,7 @@ public class ServletRol extends HttpServlet {
                     
                 case "eliminar":
                     // Eliminar otras acciones
+                    eliminarRol(request, response);
                     break;
             }
         }
@@ -49,5 +51,21 @@ public class ServletRol extends HttpServlet {
         HttpSession sesion = request.getSession();
         sesion.setAttribute("data", listaRoles);
         response.sendRedirect("roles/rol.jsp");
+    }
+    
+    private void eliminarRol(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        int idRol = Integer.parseInt(request.getParameter("id"));
+        Rol rol = new RolDaoJPA().get(new Rol(idRol));
+        
+        int registrosEliminados = new RolDaoJPA().delete(rol);
+        
+        if(registrosEliminados >= 1) {
+            System.out.println("El registro fue eliminado con exito");
+        } else {
+            System.err.println("Se produjo un error al intentar eliminar el siguiente registro");
+        }
+        System.out.println("Cantidad de registros eliminados: " + registrosEliminados);
+        
+        listarRoles(request, response);
     }
 }

@@ -11,11 +11,11 @@ public interface IAsignacionDAO {
     public List<Asignacion> getAll();
     
     // Insertar un registro
-    public boolean add(Asignacion asignacion);
+    public int add(Asignacion asignacion);
     
     // Actualizar un registro
-    public boolean update(Asignacion asignacion);
+    public int update(Asignacion asignacion);
     
     // Eliminar un registro
-    public boolean delete(Asignacion asignacion);
+    public int delete(Asignacion asignacion);
 }

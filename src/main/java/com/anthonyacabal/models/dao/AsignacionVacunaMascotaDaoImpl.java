@@ -17,6 +17,7 @@ import java.util.List;
  */
 public class AsignacionVacunaMascotaDaoImpl implements IAsignacionDAO {
     private static final String SQL_SELECT = "SELECT id_asignacion_vacuna, vacuna_id, mascota_id, fecha_vacuna FROM asignaciones_vacunas_mascotas";
+    private static final String SQL_DELETE = "DELETE FROM asignaciones_vacunas_mascotas WHERE id_asignacion_vacuna = ?";
     
     private Connection con = null;
     private PreparedStatement pstmt = null;
@@ -51,17 +52,33 @@ public class AsignacionVacunaMascotaDaoImpl implements IAsignacionDAO {
     }
 
     @Override
-    public boolean add(Asignacion asignacion) {
+    public int add(Asignacion asignacion) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean update(Asignacion asignacion) {
+    public int update(Asignacion asignacion) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean delete(Asignacion asignacion) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int delete(Asignacion asignacion) {
+        int rows = 0;
+
+        try {
+            con = Conexion.getConnection();
+            pstmt = con.prepareStatement(SQL_DELETE);
+            pstmt.setInt(1, asignacion.getId());
+            System.out.println(pstmt.toString());
+            /*cantidad de líneas afectadas*/
+            rows = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Se produjo un error al intentar eliminar el registro con el id:" + asignacion.getId());
+            e.printStackTrace(System.out);
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+
+        return rows;
     }
 }

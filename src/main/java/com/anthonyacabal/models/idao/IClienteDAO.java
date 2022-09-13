@@ -11,11 +11,11 @@ public interface IClienteDAO {
     public List<Cliente> getAll();
     
     // Insertar un registro
-    public boolean add(Cliente compra);
+    public int add(Cliente compra);
     
     // Actualizar un registro
-    public boolean update(Cliente compra);
+    public int update(Cliente compra);
     
     // Eliminar un registro
-    public boolean delete(Cliente compra);
+    public int delete(Cliente compra);
 }

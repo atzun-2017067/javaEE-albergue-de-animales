@@ -16,11 +16,11 @@ public interface IPersonaDAO {
     public List<Persona> getAll();
     
     // Insertar un registro
-    public boolean add(Persona estudiante);
+    public int add(Persona persona);
     
     // Actualizar un registro
-    public boolean update(Persona estudiante);
+    public int update(Persona persona);
     
     // Eliminar un registro
-    public boolean delete(Persona estudiante);
+    public int delete(Persona persona);
 }

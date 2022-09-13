@@ -1,9 +1,11 @@
 package com.anthonyacabal.models.domain;
 
+
 /**
  *
  * @author Anthony Acabal
  */
+
 public class Empleado {
     private int id;
     private int personaId;

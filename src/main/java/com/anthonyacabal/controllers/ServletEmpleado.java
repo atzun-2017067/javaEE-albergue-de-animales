@@ -39,6 +39,7 @@ public class ServletEmpleado extends HttpServlet {
                     
                 case "eliminar":
                     // Eliminar otras acciones
+                    eliminarEmpleado(request, response);
                     break;
             }
         }
@@ -49,5 +50,21 @@ public class ServletEmpleado extends HttpServlet {
         HttpSession sesion = request.getSession();
         sesion.setAttribute("data", listaEmpleados);
         response.sendRedirect("empleados/empleado.jsp");
+    }
+    
+    private void eliminarEmpleado(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        int idEmpleado = Integer.parseInt(request.getParameter("id"));
+        Empleado empleado = new Empleado(idEmpleado);
+        
+        int registrosEliminados = new EmpleadoDaoImpl().delete(empleado);
+        
+        if(registrosEliminados >= 1) {
+            System.out.println("El registro fue eliminado con exito");
+        } else {
+            System.err.println("Se produjo un error al intentar eliminar el siguiente registro: " + empleado.toString());
+        }
+        System.out.println("Cantidad de registros eliminados: " + registrosEliminados);
+        
+        listarEmpleados(request, response);
     }
 }

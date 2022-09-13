@@ -1,18 +1,63 @@
 package com.anthonyacabal.models.domain;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
 /**
  *
  * @author Anthony Acabal
  */
-public class Persona {
+
+@Entity
+@Table(name = "personas")
+@NamedQueries(
+        {
+            @NamedQuery(name = "Persona.findAll", query = "from Persona" /*Consulta a un objeto de datos*/),
+            /*el from estudiante no es una sentencia sql, lo que hace referencia es al nombre de la clase, no al de la tabla*/
+            @NamedQuery(name = "Persona.find", query = "from Persona WHERE id = :id")
+        /*se deja espacio : y se le asigna un nombre a ese parametro*/
+        }
+        /*Lo que se acaba de hacer es un mapeo*/
+        /*ENTIDADES FUERTES CON JPA Y ENTIDADES DÉBILES CON JDBC*/
+)
+public class Persona implements Serializable {
+    
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    @Column(name = "id_persona")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column
     private String nombre1;
+    
+    @Column
     private String nombre2;
+    
+    @Column
     private String nombre3;
+    
+    @Column
     private String apellido1;
+    
+    @Column
     private String apellido2;
+    
+    @Column
     private String direccion;
+    
+    @Column
     private String cui;
+    
+    @Column
     private String telefono;
     
     public Persona() {

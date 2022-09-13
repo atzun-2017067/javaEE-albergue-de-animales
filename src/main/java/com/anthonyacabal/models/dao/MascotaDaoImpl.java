@@ -18,6 +18,7 @@ import java.util.List;
 public class MascotaDaoImpl implements IMascotaDAO {
     private static final String SQL_SELECT = "SELECT id_mascota, nombre, tipo_mascota_id, raza,"
             + "genero, edad, salon_id FROM mascotas";
+    private static final String SQL_DELETE = "DELETE FROM mascotas WHERE id_mascota = ?";
     
     private Connection con = null;
     private PreparedStatement pstmt = null;
@@ -52,17 +53,33 @@ public class MascotaDaoImpl implements IMascotaDAO {
     }
 
     @Override
-    public boolean add(Mascota mascota) {
+    public int add(Mascota mascota) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean update(Mascota mascota) {
+    public int update(Mascota mascota) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean delete(Mascota mascota) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int delete(Mascota mascota) {
+        int rows = 0;
+
+        try {
+            con = Conexion.getConnection();
+            pstmt = con.prepareStatement(SQL_DELETE);
+            pstmt.setInt(1, mascota.getIdMascota());
+            System.out.println(pstmt.toString());
+            /*cantidad de líneas afectadas*/
+            rows = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Se produjo un error al intentar eliminar el registro con el id:" + mascota.getIdMascota());
+            e.printStackTrace(System.out);
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+
+        return rows;
     }
 }

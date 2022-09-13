@@ -16,11 +16,11 @@ public interface IVacunaDAO {
     public List<Vacuna> getAll();
     
     // Insertar un registro
-    public boolean add(Vacuna dosis);
+    public int add(Vacuna vacuna);
     
     // Actualizar un registro
-    public boolean update(Vacuna dosis);
+    public int update(Vacuna vacuna);
     
     // Eliminar un registro
-    public boolean delete(Vacuna dosis);
+    public int delete(Vacuna vacuna);
 }

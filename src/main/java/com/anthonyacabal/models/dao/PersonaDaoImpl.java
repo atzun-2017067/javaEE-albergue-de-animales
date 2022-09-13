@@ -10,16 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 import com.anthonyacabal.models.idao.IPersonaDAO;
 
-
 /**
  *
  * @author Anthony Acabal
  */
-
 public class PersonaDaoImpl implements IPersonaDAO {
-    
+
     private static final String SQL_SELECT = "SELECT id_persona, nombre1, nombre2, nombre3, apellido1, apellido2, direccion, cui, telefono FROM personas";
-    
+    private static final String SQL_DELETE = "DELETE FROM estudiantes WHERE id = ?";
+
     private Connection con = null;
     private PreparedStatement pstmt = null;
     private ResultSet rs = null;
@@ -32,8 +31,8 @@ public class PersonaDaoImpl implements IPersonaDAO {
             con = Conexion.getConnection();
             pstmt = con.prepareStatement(SQL_SELECT);
             rs = pstmt.executeQuery();
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 persona = new Persona(rs.getInt("id_persona"), rs.getString("nombre1"), rs.getString("nombre2"),
                         rs.getString("nombre3"), rs.getString("apellido1"), rs.getString("apellido2"),
                         rs.getString("direccion"), rs.getString("cui"), rs.getString("telefono"));
@@ -48,24 +47,40 @@ public class PersonaDaoImpl implements IPersonaDAO {
             Conexion.close(pstmt);
             Conexion.close(con);
         }
-        
+
         return listaPersona;
-        
+
     }
 
     @Override
-    public boolean add(Persona persona) {
+    public int add(Persona persona) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean update(Persona persona) {
+    public int update(Persona persona) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean delete(Persona persona) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int delete(Persona persona) {
+        int rows = 0;
+
+        try {
+            con = Conexion.getConnection();
+            pstmt = con.prepareStatement(SQL_DELETE);
+            pstmt.setInt(1, persona.getId());
+            System.out.println(pstmt.toString());
+            /*cantidad de líneas afectadas*/
+            rows = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Se produjo un error al intentar eliminar el registro con el id:" + persona.getId());
+            e.printStackTrace(System.out);
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+
+        return rows;
     }
-    
+
 }

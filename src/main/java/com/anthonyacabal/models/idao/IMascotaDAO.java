@@ -11,11 +11,11 @@ public interface IMascotaDAO {
     public List<Mascota> getAll();
     
     // Insertar un registro
-    public boolean add(Mascota mascota);
+    public int add(Mascota mascota);
     
     // Actualizar un registro
-    public boolean update(Mascota mascota);
+    public int update(Mascota mascota);
     
     // Eliminar un registro
-    public boolean delete(Mascota mascota);
+    public int delete(Mascota mascota);
 }

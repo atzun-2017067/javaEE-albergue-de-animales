@@ -49,17 +49,17 @@ public class VacunaDaoImpl implements IVacunaDAO {
     }
 
     @Override
-    public boolean add(Vacuna vacuna) {
+    public int add(Vacuna vacuna) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean update(Vacuna vacuna) {
+    public int update(Vacuna vacuna) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public boolean delete(Vacuna vacuna) {
+    public int delete(Vacuna vacuna) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
